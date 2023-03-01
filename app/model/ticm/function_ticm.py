@@ -27,7 +27,7 @@ def search_similar_txt(text_file,text) :
 
 
 
-#123
+#123123
 question = 'ccxxxcเพราะเหตุใดความเสี่ยงจากการลงทุนผ่านกองทุนรวมอาจต่ำกว่าการลงทุนตรงด้วยตนเอง'
 
 select_text_files = []
