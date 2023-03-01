@@ -25,11 +25,10 @@ def search_similar_txt(text_file,text) :
     # print(text_file,'confident :',confidence)
     return text_file, confidence
 
-result_select_text_files = []
-result_select_text_confidence = []
 
 
-questions = 'เพราะเหตุใดความเสี่ยงจากการลงทุนผ่านกองทุนรวมอาจต่ำกว่าการลงทุนตรงด้วยตนเอง'
+
+question = 'เพราะเหตุใดความเสี่ยงจากการลงทุนผ่านกองทุนรวมอาจต่ำกว่าการลงทุนตรงด้วยตนเอง'
 
 select_text_files = []
 cut_words= ['อย่างไร','ใคร','หมายถึงอะไร']
@@ -38,20 +37,19 @@ for cut_word in cut_words :
     question = question.replace(cut_word,' ')
     text_paths = glob.glob('model/context/*.txt')
     
-  confidences = []
-  for text_path in text_paths :
-    # question = 'NP คืออะไร'
-    text_file,confidence = search_similar_txt(text_path,question)
-    confidences.append(confidence)
+    confidences = []
+    for text_path in text_paths :
+        # question = 'NP คืออะไร'
+        text_file,confidence = search_similar_txt(text_path,question)
+        confidences.append(confidence)
 
-  max_confidence = max(confidences)
-  for index,confidence in enumerate(confidences):
-    if confidence == max_confidence:
-      select_text_files.append(text_paths[index].split('/')[-1])
+    max_confidence = max(confidences)
+    for index,confidence in enumerate(confidences):
+        if confidence == max_confidence:
+            select_text_files.append(text_paths[index].split('/')[-1])
 
-  print(f'question : {question}')
-  print(f'number_of_files : {len(select_text_files)} , confidence : {max_confidence}, select_text_files : {select_text_files} ')
-  result_select_text_files.append(select_text_files)
-  result_select_text_confidence.append(max_confidence)
+print(f'question : {question}')
+print(f'number_of_files : {len(select_text_files)} , confidence : {max_confidence}, select_text_files : {select_text_files} ')
+
 
 
